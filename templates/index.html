@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Trees</title>
+</head>
+<style>
+    footer {
+        padding: 10px 0;
+        background-color: #101010;
+        color: #9d9d9d;
+        bottom: 0;
+        width: 100%;
+        color: white;
+        margin-top: 40px;
+        position: fixed;
+        left: 0;
+    }
+</style>
+
+<body>
+
+
+    <!-- As a heading -->
+    <nav class="navbar navbar-dark bg-dark">
+        <span class="navbar-brand mb-0 h1"><h1>Trees(Avl)</h1></span>
+    </nav>
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Hello user!</strong> Here you can visualize your avl tree
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="card" style="width: 18rem; ">
+        <div class="card-body">
+            <h5 class="card-title">enter elements</h5>
+            <p class="card-text">
+                <form method="post" action="#" id="trackerForm">{% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Enter number</label>
+                        <input type="number" class="form-control" id="Amount" name="Amount" placeholder="">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mb-2">Insert</button>
+
+                </form>
+            </p>
+        </div>
+    </div><br> {% for message in messages %}
+    <div style="text-align: center; " class="alert alert-warning alert-dismissible fade show" role="alert">{{messages.tags}}
+        <strong>{{message}}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    {% endfor%}
+
+    <footer>
+        <center> Copyright &copy <a href="#" style="color:orangered; text-decoration: none;">Trees(avl)</a>. All Rights Reserved and Contact Us: +91 9520313045</center>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+<script>
+    $('#trackerForm').submit(function(event) {
+                $('#items').empty();
+                var formData = {
+                    'orderId': $('input[name=orderId]').val(),
+                    'email25': $('input[name=email25]').val(),
+                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: '/shop/tracker/',
+                    data: formData,
+                    encode: true
+                })
+
+                .done(function(data) {
+                            $('#citems').empty();
+                            console.log(data)
+</script>
+
+</html>
